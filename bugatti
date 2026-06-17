@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bugatti Tanıtım Sayfası</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background-color: #090909;
+      color: white;
+    }
+
+    header {
+      width: 100%;
+      background-color: rgba(0, 0, 0, 0.92);
+      padding: 20px 70px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: fixed;
+      top: 0;
+      z-index: 1000;
+      border-bottom: 2px solid #c40000;
+    }
+
+    header h1 {
+      color: #ff1e1e;
+      margin: 0;
+      letter-spacing: 4px;
+      font-size: 30px;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin-left: 24px;
+      font-weight: bold;
+      font-size: 15px;
+    }
+
+    nav a:hover {
+      color: #ff1e1e;
+    }
+
+    .hero {
+      min-height: 100vh;
+      background:
+        linear-gradient(rgba(0,0,0,0.25), rgba(0,0,0,0.9)),
+        url("https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=1600&q=80") center/cover no-repeat;
+      display: flex;
+      align-items: center;
+      padding: 130px 80px 70px;
+    }
+
+    .hero-box {
+      max-width: 700px;
+      background-color: rgba(0, 0, 0, 0.65);
+      padding: 38px;
+      border-left: 6px solid #e00000;
+      border-radius: 16px;
+      box-shadow: 0 0 30px rgba(255,0,0,0.25);
+    }
+
+    .hero-box h2 {
+      font-size: 58px;
+      margin: 0 0 18px;
+      line-height: 1.1;
+    }
+
+    .hero-box span {
+      color: #ff1e1e;
+    }
+
+    .hero-box p {
+      font-size: 20px;
+      line-height: 1.6;
+      color: #eeeeee;
+    }
+
+    .btn {
+      display: inline-block;
+      margin-top: 22px;
+      padding: 14px 34px;
+      background-color: #d00000;
+      color: white;
+      text-decoration: none;
+      border-radius: 30px;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+
+    .btn:hover {
+      background-color: white;
+      color: #d00000;
+      transform: scale(1.05);
+    }
+
+    .section {
+      padding: 85px 70px;
+      text-align: center;
+    }
+
+    .dark-section {
+      background-color: #101010;
+    }
+
+    .section h2 {
+      color: #ff1e1e;
+      font-size: 38px;
+      letter-spacing: 2px;
+      margin-bottom: 20px;
+    }
+
+    .section p {
+      max-width: 900px;
+      margin: auto;
+      font-size: 18px;
+      line-height: 1.8;
+      color: #dddddd;
+    }
+
+    .cards, .models, .gallery {
+      display: flex;
+      justify-content: center;
+      gap: 28px;
+      flex-wrap: wrap;
+      margin-top: 45px;
+    }
+
+    .card {
+      width: 290px;
+      background-color: #171717;
+      padding: 28px;
+      border-radius: 18px;
+      box-shadow: 0 0 18px rgba(255,0,0,0.3);
+      transition: 0.3s;
+    }
+
+    .card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 0 28px rgba(255,0,0,0.6);
+    }
+
+    .card h3 {
+      color: #ff1e1e;
+      font-size: 24px;
+    }
+
+    .model-card {
+      width: 330px;
+      background-color: #151515;
+      border-radius: 18px;
+      overflow: hidden;
+      text-align: left;
+      box-shadow: 0 0 20px rgba(255,0,0,0.3);
+      transition: 0.3s;
+    }
+
+    .model-card:hover {
+      transform: scale(1.04);
+    }
+
+    .model-card img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      display: block;
+      background-color: #222;
+    }
+
+    .model-info {
+      padding: 24px;
+    }
+
+    .model-info h3 {
+      color: #ff1e1e;
+      margin-top: 0;
+      font-size: 24px;
+    }
+
+    .model-info p {
+      text-align: left;
+      font-size: 16px;
+      line-height: 1.6;
+    }
+
+    .gallery img {
+      width: 360px;
+      height: 230px;
+      object-fit: cover;
+      border-radius: 18px;
+      box-shadow: 0 0 18px rgba(255,255,255,0.16);
+      transition: 0.3s;
+      background-color: #222;
+    }
+
+    .gallery img:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 25px rgba(255,0,0,0.55);
+    }
+
+    .contact-box {
+      max-width: 650px;
+      margin: 40px auto 0;
+      background-color: #151515;
+      padding: 35px;
+      border-radius: 18px;
+      box-shadow: 0 0 25px rgba(255,0,0,0.35);
+      border: 1px solid #b80000;
+    }
+
+    .contact-box p {
+      font-size: 19px;
+      margin: 14px 0;
+    }
+
+    .contact-box strong {
+      color: #ff1e1e;
+    }
+
+    footer {
+      background-color: #000;
+      text-align: center;
+      padding: 25px;
+      color: #aaa;
+      border-top: 2px solid #c40000;
+    }
+
+    @media (max-width: 768px) {
+      header {
+        padding: 18px 22px;
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      nav a {
+        margin: 0 7px;
+        font-size: 13px;
+      }
+
+      .hero {
+        padding: 155px 24px 65px;
+      }
+
+      .hero-box h2 {
+        font-size: 38px;
+      }
+
+      .section {
+        padding: 65px 24px;
+      }
+
+      .gallery img,
+      .model-card {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <h1>BUGATTI</h1>
+    <nav>
+      <a href="#anasayfa">Ana Sayfa</a>
+      <a href="#hakkinda">Hakkında</a>
+      <a href="#ozellikler">Özellikler</a>
+      <a href="#modeller">Modeller</a>
+      <a href="#galeri">Galeri</a>
+      <a href="#iletisim">İletişim</a>
+    </nav>
+  </header>
+
+  <section id="anasayfa" class="hero">
+    <div class="hero-box">
+      <h2>Bugatti ile <span>Hız ve Lüks</span></h2>
+      <p>
+        Bugatti, üstün mühendislik anlayışı, etkileyici tasarımı ve yüksek performanslı
+        otomobilleriyle dünyanın en prestijli markalarından biridir. Bu web sayfası,
+        Bugatti modellerini tanıtmak için hazırlanmıştır.
+      </p>
+      <a href="#modeller" class="btn">Modelleri İncele</a>
+    </div>
+  </section>
+
+  <section id="hakkinda" class="section">
+    <h2>BUGATTI HAKKINDA</h2>
+    <p>
+      Bugatti; lüks, hız ve teknoloji kavramlarını bir araya getiren özel otomobiller üretir.
+      Markanın araçları sadece ulaşım aracı değil, aynı zamanda mühendislik ve tasarım başarısı
+      olarak görülür. Aerodinamik gövde yapısı, güçlü motor seçenekleri ve detaylı iç mekân
+      tasarımı Bugatti'nin öne çıkan özelliklerindendir.
+    </p>
+  </section>
+
+  <section id="ozellikler" class="section dark-section">
+    <h2>ÖNE ÇIKAN ÖZELLİKLER</h2>
+
+    <div class="cards">
+      <div class="card">
+        <h3>Yüksek Performans</h3>
+        <p>Bugatti modelleri güçlü motorları ve yüksek hız kapasitesiyle dikkat çeker.</p>
+      </div>
+
+      <div class="card">
+        <h3>Lüks Tasarım</h3>
+        <p>Dış tasarımda sportif çizgiler, iç mekânda kaliteli malzemeler kullanılır.</p>
+      </div>
+
+      <div class="card">
+        <h3>Aerodinamik Yapı</h3>
+        <p>Gövde tasarımı, hız ve yol tutuş performansını artıracak şekilde geliştirilmiştir.</p>
+      </div>
+
+      <div class="card">
+        <h3>Teknoloji</h3>
+        <p>Sürücüye özel dijital göstergeler ve modern donanımlar araç deneyimini güçlendirir.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="modeller" class="section">
+    <h2>BUGATTI MODELLERİ</h2>
+    <p>
+      Aşağıda Bugatti markasının dikkat çeken modellerinden bazıları tanıtılmıştır.
+    </p>
+
+    <div class="models">
+      <div class="model-card">
+        <img src="https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=1000&q=80" alt="Kırmızı spor araba">
+        <div class="model-info">
+          <h3>Bugatti Chiron</h3>
+          <p>Bugatti Chiron, markanın en bilinen hiper otomobillerinden biridir. Güçlü motoru, sportif tasarımı ve lüks detaylarıyla öne çıkar.</p>
+        </div>
+      </div>
+
+      <div class="model-card">
+        <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1000&q=80" alt="Kırmızı lüks araba">
+        <div class="model-info">
+          <h3>Bugatti Divo</h3>
+          <p>Bugatti Divo, özel üretim anlayışı ve dinamik tasarımıyla performans odaklı bir model olarak tanıtılır.</p>
+        </div>
+      </div>
+
+      <div class="model-card">
+        <img src="https://images.unsplash.com/photo-1544636331-e26879cd4d9b?auto=format&fit=crop&w=1000&q=80" alt="Kırmızı performans arabası">
+        <div class="model-info">
+          <h3>Bugatti W16 Mistral</h3>
+          <p>W16 Mistral, üstü açık tasarımı ve güçlü duruşuyla Bugatti'nin özel modelleri arasında yer alır.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="galeri" class="section dark-section">
+    <h2>GALERİ</h2>
+    <p>
+      Bu bölümde kırmızı ve sportif otomobil görselleri kullanılmıştır.
+    </p>
+
+    <div class="gallery">
+      <img src="https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=1000&q=80" alt="Kırmızı spor araba 1">
+      <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1000&q=80" alt="Kırmızı spor araba 2">
+      <img src="https://images.unsplash.com/photo-1544636331-e26879cd4d9b?auto=format&fit=crop&w=1000&q=80" alt="Kırmızı spor araba 3">
+      <img src="https://images.unsplash.com/photo-1542362567-b07e54358753?auto=format&fit=crop&w=1000&q=80" alt="Lüks spor araba 4">
+      <img src="https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&w=1000&q=80" alt="Kırmızı araba 5">
+      <img src="https://images.unsplash.com/photo-1603386329225-868f9b1ee6c9?auto=format&fit=crop&w=1000&q=80" alt="Spor araba 6">
+    </div>
+  </section>
+
+  <section id="iletisim" class="section">
+    <h2>İLETİŞİM</h2>
+    <p>
+      Bu bölüm, sayfanın sahibine ait örnek iletişim bilgilerini göstermektedir.
+    </p>
+
+    <div class="contact-box">
+      <p><strong>Ad Soyad:</strong> Hatice Özdemir</p>
+      <p><strong>E-posta:</strong> haticecanozdemir@example.com</p>
+      <p><strong>Telefon:</strong> 0555 987 43 21</p>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2026 Bugatti Tanıtım Sayfası | Web Tasarım Dersi Projesi</p>
+  </footer>
+
+</body>
+</html>
